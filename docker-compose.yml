@@ -1,0 +1,22 @@
+# This is used to start dependencies that are required to run the service or the integration tests locally.
+# To use it, run the start-deps.sh script.
+version: '3'
+services:
+  postgres:
+    image: postgres:15.4-alpine
+    environment:
+      - POSTGRES_DB=messaging-db
+      - POSTGRES_USER=messaging-user
+      - POSTGRES_PASSWORD=messaging-password
+      - SPRING_DATA_REDIS_HOST=redis
+    ports:
+      - 5432:5432
+
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sqs,sns
+      - AWS_DEFAULT_REGION=eu-west-1
+      - EDGE_PORT=4566
+    ports:
+      - '4566-4597:4566-4597'

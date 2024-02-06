@@ -1,0 +1,14 @@
+logging.level:
+  ROOT: INFO
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/messaging-db
+    username: messaging-user
+    password: messaging-password
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
